@@ -67,11 +67,10 @@ void	free_list(t_list **list)
 	{
 		temp = *list;
 		*list = (*list)->next;
-		free(temp);
+		free(temp); //erro double free
 		sizedelete--;
 	}
-	sizedelete = ft_line_size(*list);
-	if (*list && sizedelete == 0)
+	if ((*list)->content == 0)
 		free(*list);
 }
 

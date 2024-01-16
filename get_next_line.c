@@ -70,7 +70,7 @@ char	*read_line(t_list **list, int fd)
 	char	*line;
 
 	chars_read = read (fd, buffer, BUFFER_SIZE);
-	if (chars_read <= 0) //mudar verificação para ver se a lista estática ainda tem conteúdo
+	if (chars_read <= 0)
 		return (create_line(*list));
 	buffer[chars_read] = '\0';
 	populate_list(list, buffer);
