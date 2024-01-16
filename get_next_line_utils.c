@@ -38,11 +38,11 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	last->next = new;
 }
 
-int	ft_line_size(t_list *list) //tratar caso para listas vazias
+int	ft_line_size(t_list *list)
 {
 	int	len;
 
-	if (!list)
+	if (!list || list->content == 0)
 		return (0);
 	len = 0;
 	while (list->content)
@@ -67,11 +67,14 @@ void	free_list(t_list **list)
 	{
 		temp = *list;
 		*list = (*list)->next;
-		free(temp); //erro double free
+		free(temp);
 		sizedelete--;
 	}
-	if ((*list)->content == 0)
+	if (*list && (*list)->content == 0)
+	{
 		free(*list);
+		*list = NULL;
+	}
 }
 
 char	*ft_strchr(const char *s, int c)

@@ -35,7 +35,7 @@ void	populate_list(t_list **list, char *buffer)
 	{
 		if (!last->content)
 			last->content = *buffer++;
-		if (*buffer) //aqui copio o buffer inteiro, mesmo que tenha um \n no meio
+	if (*buffer) //aqui copio o buffer inteiro, mesmo que tenha um \n no meio
 		{
 			ft_lstadd_back(list, create_list());
 			last = last->next;
@@ -49,6 +49,8 @@ char	*create_line(t_list *list)
 	int		len;
 	int		i;
 
+	if (list->content == 0)
+		return (NULL);
 	len = ft_line_size(list);
 	line = malloc(len + 1);
 	if (line == NULL)
