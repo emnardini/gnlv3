@@ -67,7 +67,7 @@ char	*create_line(t_list *list)
 
 char	*read_line(t_list **list, int fd)
 {
-	char	buffer[BUFFER_SIZE + 1];
+	static char	buffer[BUFFER_SIZE + 1];
 	int		chars_read;
 	char	*line;
 
@@ -79,9 +79,9 @@ char	*read_line(t_list **list, int fd)
 	while (!ft_strchr(buffer, '\n'))
 	{
 		chars_read = read(fd, buffer, BUFFER_SIZE);
-		if (chars_read < 0) //trata erro
+		if (chars_read < 0)
 			return (NULL);
-		if (chars_read == 0) //trata EOF
+		if (chars_read == 0)
 			break;
 		buffer[chars_read] = '\0';
 		populate_list(list, buffer);
